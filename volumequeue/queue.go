@@ -42,7 +42,7 @@ func (timerSource) NewTimer(attempt uint) vqTimer {
 		// of attempt. this is an easy way to do an exponent solely with
 		// integers
 		waitFor = baseRetryInterval << attempt
-		if waitFor > maxRetryInterval {
+		if waitFor > maxRetryInterval || waitFor < baseRetryInterval {
 			waitFor = maxRetryInterval
 		}
 	}
