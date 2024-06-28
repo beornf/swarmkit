@@ -162,12 +162,12 @@ func (s *Scheduler) Run(pctx context.Context) error {
 	tickRequired := false
 
 	schedule := func() {
-		if len(s.pendingPreassignedTasks) > 0 {
-			s.processPreassignedTasks(ctx)
-		}
 		if tickRequired {
 			s.tick(ctx)
 			tickRequired = false
+		}
+		if len(s.pendingPreassignedTasks) > 0 {
+			s.processPreassignedTasks(ctx)
 		}
 	}
 
